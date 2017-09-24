@@ -35,6 +35,9 @@ private:
     ShapeType mShape;
 
 
+    QPointF compute_astroid(float t);
+
+
 public slots:
 };
 
