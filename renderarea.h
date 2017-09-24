@@ -14,10 +14,15 @@ public:
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
-    enum Shapes { Astroid, Huygens, Cycloid, Hypo_Cycloid };
+    enum ShapeType { Astroid, Huygens, Cycloid, Hypo_Cycloid };
 
+    // setters
     void setBackgroundColor(QColor color) { mBackgroundColor = color; }
+    void setShape(ShapeType shape) { mShape = shape; }
+
+    // getters
     QColor getBackgroundColor() const { return mBackgroundColor; }
+    ShapeType getShape() const {return mShape; }
 
 signals:
 
@@ -27,6 +32,8 @@ protected:
 private:
     QColor mBackgroundColor;
     QColor mShapeColor;
+    ShapeType mShape;
+
 
 public slots:
 };
