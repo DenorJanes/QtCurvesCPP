@@ -62,18 +62,18 @@ void RenderArea::paintEvent(QPaintEvent* event)
     painter.drawRect(this->rect());
 
     QPoint center = this->rect().center();
-    int stepCount = 256;
-    int scale = 70;
-    float_t intervalLength = 2 * M_PI;
-    float step = intervalLength/stepCount;
+    mStepCount = 256;
+    mScale = 70;
+    mIntervalLength = 2 * M_PI;
+    float step = mIntervalLength/mStepCount;
 
-    for(float t = 0; t < intervalLength; t+= step)
+    for(float t = 0; t < mIntervalLength; t+= step)
     {
         QPointF point = compute_astroid(t);
 
         QPointF pixel;
-        pixel.setX(point.x()*scale + center.x());
-        pixel.setY(point.y()*scale + center.y());
+        pixel.setX(point.x()*mScale + center.x());
+        pixel.setY(point.y()*mScale + center.y());
 
         painter.drawPoint(pixel);
     }

@@ -33,7 +33,9 @@ private:
     QColor mBackgroundColor;
     QColor mShapeColor;
     ShapeType mShape;
-
+    int mStepCount;
+    int mScale;
+    float mIntervalLength;
 
     QPointF compute_astroid(float t);
 
