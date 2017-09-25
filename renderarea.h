@@ -17,16 +17,20 @@ public:
     enum ShapeType { Astroid, Huygens, Cycloid, Hypo_Cycloid };
 
     // setters
+    void setShapeColor(QColor color) { mShapeColor = color; }
     void setBackgroundColor(QColor color) { mBackgroundColor = color; }
     void setShape(ShapeType shape) { mShape = shape; on_shape_changed(); }
     void setScale(float scale) { mScale = scale; }
     void setIntervalLength(float intervalLength) { mIntervalLength = intervalLength; }
+    void setStepCount(int stepCount) { mStepCount = stepCount; }
 
     // getters
+    QColor getShapeColor() const { return mShapeColor; }
     QColor getBackgroundColor() const { return mBackgroundColor; }
     ShapeType getShape() const { return mShape; }
     float getScale() const { return mScale; }
     float getIntervalLength() const { return mIntervalLength; }
+    int getStepCount() const { return mStepCount; }
 
 signals:
 

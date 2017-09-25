@@ -1,13 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QColorDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->ui->spinScale->setValue(this->ui->renderArea->getScale());
-    this->ui->spinInterval->setValue(this->ui->renderArea->getIntervalLength());
+    update_ui();
 }
 
 MainWindow::~MainWindow()
@@ -19,6 +19,7 @@ void MainWindow::update_ui()
 {
     this->ui->spinScale->setValue(this->ui->renderArea->getScale());
     this->ui->spinInterval->setValue(this->ui->renderArea->getIntervalLength());
+    this->ui->spinStepCount->setValue(this->ui->renderArea->getStepCount());
 }
 
 void MainWindow::on_btnAstroid_clicked()
@@ -59,4 +60,22 @@ void MainWindow::on_spinInterval_valueChanged(double intervalLength)
 {
     this->ui->renderArea->setIntervalLength(intervalLength);
     this->ui->renderArea->repaint();
+}
+
+void MainWindow::on_spinStepCount_valueChanged(int stepCount)
+{
+    this->ui->renderArea->setStepCount(stepCount);
+    this->ui->renderArea->repaint();
+}
+
+void MainWindow::on_btnBackground_clicked()
+{
+    QColor color = QColorDialog::getColor(ui->renderArea->getBackgroundColor(),this, "Select Color");
+    ui->renderArea->setBackgroundColor(color);
+}
+
+void MainWindow::on_btnShapeColor_clicked()
+{
+    QColor color = QColorDialog::getColor(ui->renderArea->getShapeColor(),this, "Select Color");
+    ui->renderArea->setShapeColor(color);
 }

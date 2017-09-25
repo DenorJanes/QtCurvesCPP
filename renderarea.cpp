@@ -40,12 +40,12 @@ void RenderArea::on_shape_changed()
 
 QSize RenderArea::minimumSizeHint() const
 {
-    return QSize(100,100);
+    return QSize(300,300);
 }
 
 QSize RenderArea::sizeHint() const
 {
-    return QSize(400,200);
+    return QSize(300,400);
 }
 
 QPointF RenderArea::compute_astroid(float t)
