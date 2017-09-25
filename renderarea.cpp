@@ -19,18 +19,18 @@ void RenderArea::on_shape_changed()
         mIntervalLength = 2 * M_PI;
         break;
     case Cycloid:
-        mStepCount = 256;
-        mScale = 70;
-        mIntervalLength = 2 * M_PI;
+        mStepCount = 128;
+        mScale = 4;
+        mIntervalLength = 6 * M_PI;
         break;
     case Huygens:
         mStepCount = 256;
-        mScale = 70;
-        mIntervalLength = 2 * M_PI;
+        mScale = 4;
+        mIntervalLength = 4 * M_PI;
         break;
     case Hypo_Cycloid:
         mStepCount = 256;
-        mScale = 70;
+        mScale = 15;
         mIntervalLength = 2 * M_PI;
         break;
     default:
@@ -53,13 +53,45 @@ QPointF RenderArea::compute_astroid(float t)
     float cos_t = cos(t);
     float sin_t = sin(t);
 
-    float x = 2*cos_t*cos_t*cos_t;
-    float y = 2*sin_t*sin_t*sin_t;
-
-    return QPointF(x,y);
+    return QPointF(
+                2*cos_t*cos_t*cos_t, // X
+                2*sin_t*sin_t*sin_t  // Y
+                );
+}
+QPointF RenderArea::compute_cycloid(float t)
+{
+    return QPointF (
+                1.5 * (1 - cos(t)), // X
+                1.5 * (t - sin(t))  // Y
+                );
+}
+QPointF RenderArea::compute_huygens(float t)
+{
+    return QPointF (
+                4*(3*cos(t) - cos(3*t)), // X
+                4*(3*sin(t) - sin(3*t))  // Y
+                );
+}
+QPointF RenderArea::compute_hypo(float t)
+{
+    return QPointF(
+                1.5 * (2*cos(t) + cos(2*t)), // X
+                1.5 * (2*sin(t) - sin(2*t))  // Y
+                );
 }
 
+QPointF RenderArea::compute_shape(float t)
+{
+    switch (mShape)
+    {
+    case Astroid: return compute_astroid(t);
+    case Cycloid: return compute_cycloid(t);
+    case Huygens: return compute_huygens(t);
+    case Hypo_Cycloid: return compute_hypo(t);
+    default: return QPointF(0,0);
+    }
 
+}
 
 void RenderArea::paintEvent(QPaintEvent* event)
 {
@@ -78,7 +110,7 @@ void RenderArea::paintEvent(QPaintEvent* event)
 
     for(float t = 0; t < mIntervalLength; t+= step)
     {
-        QPointF point = compute_astroid(t);
+        QPointF point = compute_shape(t);
 
         QPointF pixel;
         pixel.setX(point.x()*mScale + center.x());
@@ -86,5 +118,4 @@ void RenderArea::paintEvent(QPaintEvent* event)
 
         painter.drawPoint(pixel);
     }
-
 }

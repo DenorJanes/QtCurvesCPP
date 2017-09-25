@@ -39,7 +39,14 @@ private:
     float mIntervalLength;
 
     QPointF compute_astroid(float t);
+    QPointF compute_cycloid(float t);
+    QPointF compute_huygens(float t);
+    QPointF compute_hypo(float t);
+
+    QPointF compute_shape(float);
+
     void on_shape_changed();
+
 
 
 public slots:
