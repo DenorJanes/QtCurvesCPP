@@ -6,7 +6,40 @@ RenderArea::RenderArea(QWidget *parent) :
     mShapeColor(255,255,255),
     mShape(Astroid)
 {
+   // on_shape_changed();
+}
 
+void RenderArea::on_shape_changed()
+{
+    switch (mShape)
+    {
+    case Astroid:
+        mBackgroundColor = Qt::red;
+        mStepCount = 256;
+        mScale = 70;
+        mIntervalLength = 2 * M_PI;
+        break;
+    case Cycloid:
+        mBackgroundColor = Qt::yellow;
+        mStepCount = 256;
+        mScale = 70;
+        mIntervalLength = 2 * M_PI;
+        break;
+    case Huygens:
+        mBackgroundColor = Qt::green;
+        mStepCount = 256;
+        mScale = 70;
+        mIntervalLength = 2 * M_PI;
+        break;
+    case Hypo_Cycloid:
+        mBackgroundColor = Qt::blue;
+        mStepCount = 256;
+        mScale = 70;
+        mIntervalLength = 2 * M_PI;
+        break;
+    default:
+        break;
+    }
 }
 
 QSize RenderArea::minimumSizeHint() const
@@ -39,22 +72,7 @@ void RenderArea::paintEvent(QPaintEvent* event)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing,true);
 
-    switch (mShape) {
-    case Astroid:
-        mBackgroundColor = Qt::red;
-        break;
-    case Cycloid:
-        mBackgroundColor = Qt::yellow;
-        break;
-    case Huygens:
-        mBackgroundColor = Qt::green;
-        break;
-    case Hypo_Cycloid:
-        mBackgroundColor = Qt::blue;
-        break;
-    default:
-        break;
-    }
+    on_shape_changed();
 
     painter.setBrush(mBackgroundColor);
     painter.setPen(mShapeColor);
@@ -62,9 +80,6 @@ void RenderArea::paintEvent(QPaintEvent* event)
     painter.drawRect(this->rect());
 
     QPoint center = this->rect().center();
-    mStepCount = 256;
-    mScale = 70;
-    mIntervalLength = 2 * M_PI;
     float step = mIntervalLength/mStepCount;
 
     for(float t = 0; t < mIntervalLength; t+= step)

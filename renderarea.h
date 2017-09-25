@@ -18,7 +18,7 @@ public:
 
     // setters
     void setBackgroundColor(QColor color) { mBackgroundColor = color; }
-    void setShape(ShapeType shape) { mShape = shape; }
+    void setShape(ShapeType shape) { mShape = shape; /*on_shape_changed();*/ }
 
     // getters
     QColor getBackgroundColor() const { return mBackgroundColor; }
@@ -38,6 +38,7 @@ private:
     float mIntervalLength;
 
     QPointF compute_astroid(float t);
+    void on_shape_changed();
 
 
 public slots:
