@@ -6,7 +6,7 @@ RenderArea::RenderArea(QWidget *parent) :
     mShapeColor(255,255,255),
     mShape(Astroid)
 {
-   // on_shape_changed();
+    on_shape_changed();
 }
 
 void RenderArea::on_shape_changed()
@@ -14,25 +14,21 @@ void RenderArea::on_shape_changed()
     switch (mShape)
     {
     case Astroid:
-        mBackgroundColor = Qt::red;
         mStepCount = 256;
         mScale = 70;
         mIntervalLength = 2 * M_PI;
         break;
     case Cycloid:
-        mBackgroundColor = Qt::yellow;
         mStepCount = 256;
         mScale = 70;
         mIntervalLength = 2 * M_PI;
         break;
     case Huygens:
-        mBackgroundColor = Qt::green;
         mStepCount = 256;
         mScale = 70;
         mIntervalLength = 2 * M_PI;
         break;
     case Hypo_Cycloid:
-        mBackgroundColor = Qt::blue;
         mStepCount = 256;
         mScale = 70;
         mIntervalLength = 2 * M_PI;
@@ -71,8 +67,6 @@ void RenderArea::paintEvent(QPaintEvent* event)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing,true);
-
-    on_shape_changed();
 
     painter.setBrush(mBackgroundColor);
     painter.setPen(mShapeColor);
