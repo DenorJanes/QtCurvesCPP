@@ -20,11 +20,13 @@ public:
     void setBackgroundColor(QColor color) { mBackgroundColor = color; }
     void setShape(ShapeType shape) { mShape = shape; on_shape_changed(); }
     void setScale(float scale) { mScale = scale; }
+    void setIntervalLength(float intervalLength) { mIntervalLength = intervalLength; }
 
     // getters
     QColor getBackgroundColor() const { return mBackgroundColor; }
     ShapeType getShape() const { return mShape; }
     float getScale() const { return mScale; }
+    float getIntervalLength() const { return mIntervalLength; }
 
 signals:
 

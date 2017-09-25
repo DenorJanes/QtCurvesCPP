@@ -26,6 +26,10 @@ private slots:
 
     void on_spinScale_valueChanged(double arg1);
 
+    void update_ui();
+
+    void on_spinInterval_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 };
