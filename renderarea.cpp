@@ -15,23 +15,33 @@ void RenderArea::on_shape_changed()
     {
     case Astroid:
         mStepCount = 256;
-        mScale = 40;
+        mScale = 50;
         mIntervalLength = 2 * M_PI;
         break;
     case Cycloid:
         mStepCount = 128;
-        mScale = 4;
+        mScale = 6;
         mIntervalLength = 6 * M_PI;
         break;
     case Huygens:
         mStepCount = 256;
-        mScale = 4;
+        mScale = 8;
         mIntervalLength = 4 * M_PI;
         break;
     case Hypo_Cycloid:
         mStepCount = 256;
-        mScale = 15;
+        mScale = 30;
         mIntervalLength = 2 * M_PI;
+        break;
+    case Fancy:
+        mStepCount = 512;
+        mScale = 10;
+        mIntervalLength = 12 * M_PI;
+        break;
+    case Starfish:
+        mStepCount = 256;
+        mScale = 25;
+        mIntervalLength = 6 * M_PI;
         break;
     default:
         break;
@@ -79,7 +89,28 @@ QPointF RenderArea::compute_hypo(float t)
                 1.5 * (2*sin(t) - sin(2*t))  // Y
                 );
 }
+QPointF RenderArea::compute_fancy(float t)
+{
+    float a = 11;
+    float b = 6;
+    return QPointF(
+                a*cos(t) - b*cos(t*(a/b)),
+                a*sin(t) - b*sin(t*(a/b))
+                );
 
+}
+QPointF RenderArea::compute_starfish(float t)
+{
+    float R = 5;
+    float r = 3;
+    float d = 5;
+
+    return QPointF(
+                 (R-r)*cos(t) + d*cos((R-r)/r * t),
+                 (R-r)*sin(t) - d*sin((R-r)/r * t)
+                  );
+
+}
 QPointF RenderArea::compute_shape(float t)
 {
     switch (mShape)
@@ -88,6 +119,8 @@ QPointF RenderArea::compute_shape(float t)
     case Cycloid: return compute_cycloid(t);
     case Huygens: return compute_huygens(t);
     case Hypo_Cycloid: return compute_hypo(t);
+    case Fancy: return compute_fancy(t);
+    case Starfish: return compute_starfish(t);
     default: return QPointF(0,0);
     }
 
