@@ -24,6 +24,8 @@ private slots:
 
     void on_btnHypo_clicked();
 
+    void on_spinScale_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 };

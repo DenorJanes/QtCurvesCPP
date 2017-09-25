@@ -19,10 +19,12 @@ public:
     // setters
     void setBackgroundColor(QColor color) { mBackgroundColor = color; }
     void setShape(ShapeType shape) { mShape = shape; on_shape_changed(); }
+    void setScale(float scale) { mScale = scale; }
 
     // getters
     QColor getBackgroundColor() const { return mBackgroundColor; }
-    ShapeType getShape() const {return mShape; }
+    ShapeType getShape() const { return mShape; }
+    float getScale() const { return mScale; }
 
 signals:
 

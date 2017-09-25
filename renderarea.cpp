@@ -15,7 +15,7 @@ void RenderArea::on_shape_changed()
     {
     case Astroid:
         mStepCount = 256;
-        mScale = 70;
+        mScale = 40;
         mIntervalLength = 2 * M_PI;
         break;
     case Cycloid:
@@ -108,14 +108,21 @@ void RenderArea::paintEvent(QPaintEvent* event)
     QPoint center = this->rect().center();
     float step = mIntervalLength/mStepCount;
 
-    for(float t = 0; t < mIntervalLength; t+= step)
+    QPointF previous_point = compute_shape(0);
+    QPointF previous_pixel;
+    previous_pixel.setX(previous_point.x()*mScale + center.x());
+    previous_pixel.setY(previous_point.y()*mScale + center.y());
+
+    for(float t = step; t < mIntervalLength; t+= step)
     {
-        QPointF point = compute_shape(t);
+        QPointF current_point = compute_shape(t);
 
-        QPointF pixel;
-        pixel.setX(point.x()*mScale + center.x());
-        pixel.setY(point.y()*mScale + center.y());
+        QPointF current_pixel;
+        current_pixel.setX(current_point.x()*mScale + center.x());
+        current_pixel.setY(current_point.y()*mScale + center.y());
 
-        painter.drawPoint(pixel);
+        painter.drawLine(previous_pixel, current_pixel);
+
+        previous_pixel = current_pixel;
     }
 }

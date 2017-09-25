@@ -14,67 +14,72 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="RenderArea" name="renderArea" native="true"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QPushButton" name="btnAstroid">
-          <property name="text">
-           <string>Astroid</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnHuygens">
-          <property name="text">
-           <string>Huygens</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="Cycloid">
-          <property name="text">
-           <string>Cycloid</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnHypo">
-          <property name="text">
-           <string>Hypo Cycloid</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-   </layout>
-   <zorder>renderArea</zorder>
-   <zorder>btnAstroid</zorder>
-   <zorder>btnHuygens</zorder>
-   <zorder>Cycloid</zorder>
-   <zorder>btnHypo</zorder>
-   <zorder>verticalSpacer</zorder>
-   <zorder></zorder>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>40</y>
+      <width>95</width>
+      <height>182</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="btnAstroid">
+       <property name="text">
+        <string>Astroid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnHuygens">
+       <property name="text">
+        <string>Huygens</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Cycloid">
+       <property name="text">
+        <string>Cycloid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnHypo">
+       <property name="text">
+        <string>Hypo Cycloid</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="RenderArea" name="renderArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>381</width>
+      <height>291</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="spinScale">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>230</y>
+      <width>62</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="decimals">
+     <number>1</number>
+    </property>
+    <property name="singleStep">
+     <double>0.100000000000000</double>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
